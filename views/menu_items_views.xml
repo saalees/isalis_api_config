@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Action -->
+        <record id="action_webhook_config" model="ir.actions.act_window">
+            <field name="name">Webhook Configuration</field>
+            <field name="res_model">isalis_ess.webhook_config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first webhook configuration!
+                </p>
+                <p>
+                    Configure webhook URLs for different notification types in the ESS system.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_webhook_notification" model="ir.actions.act_window">
+            <field name="name">Webhook Notifications</field>
+            <field name="res_model">isalis_ess.webhook_notification</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'group_by': ['notification_type', 'status']}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No webhook notifications found!
+                </p>
+                <p>
+                    Webhook notifications will appear here when they are created by the system.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_webhook_notification_type" model="ir.actions.act_window">
+            <field name="name">Webhook Notification Types</field>
+            <field name="res_model">isalis_ess.webhook_notification_type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="action_api_test_model" model="ir.actions.act_window">
+            <field name="name">API Tests</field>
+            <field name="res_model">api.test.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'group_by': ['api_type', 'test_result', 'method']}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first API test!
+                </p>
+                <p> Create API tests to validate and debug your API endpoints. You can test all
+                    types of APIs including Employee, Expense, Payslip, <etc class=""></etc>. </p>
+            </field>
+        </record>
+
+        <record id="action_api_type_model" model="ir.actions.act_window">
+            <field name="name">API Types</field>
+            <field name="res_model">api.type.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_erp_security" model="ir.actions.act_window">
+            <field name="name">ERP Security</field>
+            <field name="res_model">isalis_ess.erp.security</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_erp_security_search" />
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="ess_menu_api_root" name="Ess" sequence="120"
+            web_icon="isalis_api_config,static/description/icon.png" />
+
+        <menuitem id="ess_menu_api_management_root"
+            name="API Management"
+            parent="ess_menu_api_root"
+            sequence="1" />
+
+        <menuitem id="menu_api_test_model"
+            name="API Tests"
+            parent="ess_menu_api_management_root"
+            action="action_api_test_model"
+            sequence="1" />
+
+        <menuitem id="menu_api_type_model"
+            name="API Types"
+            parent="ess_menu_api_management_root"
+            action="action_api_type_model"
+            sequence="2" />
+
+
+        <menuitem id="ess_menu_webhook_management_root"
+            name="Webhook Management"
+            parent="ess_menu_api_root"
+            sequence="2" />
+
+        <menuitem id="menu_webhook_notification_type_root"
+            name="Webhook Notification Types"
+            parent="ess_menu_webhook_management_root"
+            action="action_webhook_notification_type"
+            sequence="1" />
+
+        <menuitem id="ess_menu_webhook_config"
+            name="Webhook Configuration"
+            parent="ess_menu_webhook_management_root"
+            action="action_webhook_config"
+            sequence="2" />
+
+        <menuitem id="ess_menu_webhook_notification"
+            name="Webhook Notifications"
+            parent="ess_menu_webhook_management_root"
+            action="action_webhook_notification"
+            sequence="3" />
+
+
+        <menuitem id="menu_erp_security"
+            name="ERP Security Records"
+            parent="ess_menu_api_root"
+            action="action_erp_security"
+            sequence="3" />
+    </data>
+</odoo>

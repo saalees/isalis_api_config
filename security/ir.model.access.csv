@@ -1,0 +1,8 @@
+
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_webhook_notification_group_erp_manager,omc_group_erp_manager,model_isalis_ess_webhook_notification,base.group_erp_manager,1,1,1,1
+access_webhook_notification_group_user,omc_group_user,model_isalis_ess_webhook_notification,base.group_user,1,0,0,0
+access_webhook_config_group_erp_manager,omc_group_erp_manager,model_isalis_ess_webhook_config,base.group_erp_manager,1,1,1,1
+access_webhook_config_group_user,omc_group_user,model_isalis_ess_webhook_config,base.group_user,1,0,0,0
+access_erp_security_group_erp_manager,omc_group_erp_manager,model_isalis_ess_erp_security,base.group_erp_manager,1,1,1,1
+access_erp_security_group_user,omc_group_user,model_isalis_ess_erp_security,base.group_user,1,0,0,0

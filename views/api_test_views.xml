@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_api_test_model_tree" model="ir.ui.view">
+            <field name="name">api.test.model.tree</field>
+            <field name="model">api.test.model</field>
+            <field name="arch" type="xml">
+                <tree string="API Tests">
+                    <field name="name" />
+                    <field name="api_type" />
+                    <field name="method" />
+                    <field name="endpoint" />
+                    <field name="test_result" decoration-success="test_result == 'success'"
+                        decoration-danger="test_result == 'failed'"
+                        decoration-warning="test_result == 'error'" />
+                    <field name="response_status" />
+                    <field name="response_time" />
+                    <field name="created_date" />
+                    <field name="executed_date" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Tree View for api.type.model -->
+        <record id="view_api_type_model_tree" model="ir.ui.view">
+            <field name="name">api.type.model.tree</field>
+            <field name="model">api.type.model</field>
+            <field name="arch" type="xml">
+                <tree string="API Types">
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="endpoint" />
+                    <field name="method" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for api.type.model -->
+        <record id="view_api_type_model_form" model="ir.ui.view">
+            <field name="name">api.type.model.form</field>
+            <field name="model">api.type.model</field>
+            <field name="arch" type="xml">
+                <form string="API Type">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="description" />
+                            <field name="endpoint" />
+                            <field name="method" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_api_test_model_form" model="ir.ui.view">
+            <field name="name">api.test.model.form</field>
+            <field name="model">api.test.model</field>
+            <field name="arch" type="xml">
+                <form string="API Test">
+                    <header>
+                        <button name="execute_api_test" string="Execute Test" type="object"
+                            class="btn-primary"
+                            attrs="{'invisible': [('test_result', '=', 'success')]}" />
+                        <field name="test_result" widget="badge"
+                            decoration-success="test_result == 'success'"
+                            decoration-danger="test_result == 'failed'"
+                            decoration-warning="test_result == 'error'" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Test Name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="api_type" />
+                                <field name="method" />
+                                <field name="base_url" />
+                                <field name="endpoint" />
+                            </group>
+                            <group>
+                                <field name="response_status" readonly="1" />
+                                <field name="response_time" readonly="1" />
+                                <field name="created_date" readonly="1" />
+                                <field name="executed_date" readonly="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Request">
+                                <group>
+                                    <field name="request_data" widget="text" rows="6" />
+                                    <field name="headers" widget="text" rows="6" />
+                                </group>
+                            </page>
+                            <page string="Response">
+                                <group>
+                                    <field name="response_data" widget="text"
+                                        options="{'mode': 'json'}" rows="6" />
+                                    <field name="error_message" widget="text" rows="2" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_api_test_model_search" model="ir.ui.view">
+            <field name="name">api.test.model.search</field>
+            <field name="model">api.test.model</field>
+            <field name="arch" type="xml">
+                <search string="Search API Tests">
+                    <field name="name" />
+                    <field name="api_type" />
+                    <field name="method" />
+                    <field name="endpoint" />
+                    <field name="test_result" />
+                    <filter string="Successful Tests" name="successful"
+                        domain="[('test_result', '=', 'success')]" />
+                    <filter string="Failed Tests" name="failed"
+                        domain="[('test_result', '=', 'failed')]" />
+                    <filter string="Error Tests" name="error"
+                        domain="[('test_result', '=', 'error')]" />
+                    <filter string="Pending Tests" name="pending"
+                        domain="[('test_result', '=', 'pending')]" />
+                    <separator />
+                    <filter string="Employee API" name="employee"
+                        domain="[('api_type', '=', 'employee')]" />
+                    <filter string="Expense API" name="expense"
+                        domain="[('api_type', '=', 'expense')]" />
+                    <filter string="Payslip API" name="payslip"
+                        domain="[('api_type', '=', 'payslip')]" />
+                    <group expand="0" string="Group By">
+                        <filter string="API Type" name="group_api_type"
+                            context="{'group_by': 'api_type'}" />
+                        <filter string="Test Result" name="group_test_result"
+                            context="{'group_by': 'test_result'}" />
+                        <filter string="Method" name="group_method" context="{'group_by': 'method'}" />
+                        <filter string="Created Date" name="group_created_date"
+                            context="{'group_by': 'created_date:day'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo> 

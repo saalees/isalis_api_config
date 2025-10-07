@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Webhook Configuration Tree View -->
+        <record id="view_webhook_config_tree" model="ir.ui.view">
+            <field name="name">isalis_ess.webhook_config.tree</field>
+            <field name="model">isalis_ess.webhook_config</field>
+            <field name="arch" type="xml">
+                <tree string="Webhook Configuration">
+                    <field name="name" />
+                    <field name="notification_type" />
+                    <field name="webhook_url" />
+                    <field name="is_active" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Webhook Configuration Form View -->
+        <record id="view_webhook_config_form" model="ir.ui.view">
+            <field name="name">isalis_ess.webhook_config.form</field>
+            <field name="model">isalis_ess.webhook_config</field>
+            <field name="arch" type="xml">
+                <form string="Webhook Configuration">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="notification_type" />
+                                <field name="is_active" />
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="webhook_url"
+                                placeholder="https://fastapi-endpoint.com/webhook" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Webhook Configuration Search View -->
+        <record id="view_webhook_config_search" model="ir.ui.view">
+            <field name="name">isalis_ess.webhook_config.search</field>
+            <field name="model">isalis_ess.webhook_config</field>
+            <field name="arch" type="xml">
+                <search string="Webhook Configuration">
+                    <field name="name" />
+                    <field name="notification_type" />
+                    <field name="webhook_url" />
+                    <filter string="Active" name="active" domain="[('is_active', '=', True)]" />
+                    <filter string="Inactive" name="inactive" domain="[('is_active', '=', False)]" />
+                    <group expand="0" string="Group By">
+                        <filter string="Notification Type" name="group_by_type"
+                            context="{'group_by': 'notification_type'}" />
+                        <filter string="Company" name="group_by_company"
+                            context="{'group_by': 'company_id'}" groups="base.group_multi_company" />
+                    </group>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo> 
