@@ -46,14 +46,11 @@ class ErpSecurity(models.Model):
     def generate_token(self):
         for record in self:
             secret_key = "PBZjsKzceL3jMUBcVeo4eKeRy1WRz7ic"  # temporary dummy key
-            employee = self.env["hr.employee"].search(
-                [("identification_id", "=", record.national_id)], limit=1
-            )
-            if employee:
-                record.employee_id = employee.id
+
+            if record.employee_id:
                 payload = {
                     "user_id": record.salis_user_id,
-                    "employee_id": employee.id,
+                    "employee_id": record.employee_id.id,
                     "national_id": record.national_id,
                     "session_id": record.salis_session_id,
                     "exp": datetime.datetime.now() + datetime.timedelta(hours=3),
@@ -64,8 +61,14 @@ class ErpSecurity(models.Model):
                 pass
 
     def create(self, vals_list):
+        user_employee = self.env["hr.employee"].search(
+            [("identification_id", "=", vals_list["national_id"])], limit=1
+        )
+        vals_list["employee_id"] = user_employee.id
+
         result = super().create(vals_list)
-        for record in self:
+
+        for record in result:
             record.generate_token()
         return result
 
