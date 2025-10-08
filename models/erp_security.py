@@ -10,7 +10,7 @@ class ErpSecurity(models.Model):
     salis_session_id = fields.Char(string="Salis Session ID", readonly=True)
     salis_user_id = fields.Char(string="User ID", readonly=True)
     national_id = fields.Char(string="Employee National ID", readonly=True)
-    employee_id = fields.Many2one("hr.employee", string="Employee", readonly=True)
+    # employee_id = fields.Many2one("hr.employee", string="Employee", readonly=True)
     jwt_token = fields.Text(string="ERP JWT Token", readonly=True)
     active = fields.Boolean(string="Active", default=True, readonly=True)
     created_at = fields.Datetime(
@@ -47,24 +47,24 @@ class ErpSecurity(models.Model):
         for record in self:
             secret_key = "PBZjsKzceL3jMUBcVeo4eKeRy1WRz7ic"  # temporary dummy key
 
-            if record.employee_id:
-                payload = {
-                    "user_id": record.salis_user_id,
-                    "employee_id": record.employee_id.id,
-                    "national_id": record.national_id,
-                    "session_id": record.salis_session_id,
-                    "exp": datetime.datetime.now() + datetime.timedelta(hours=3),
-                }
-                token = jwt.encode(payload, secret_key, algorithm="HS256")
-                record.jwt_token = token
-            else:
-                pass
+            # if record.employee_id:
+            payload = {
+                "user_id": record.salis_user_id,
+                # "employee_id": record.employee_id.id,
+                "national_id": record.national_id,
+                "session_id": record.salis_session_id,
+                "exp": datetime.datetime.now() + datetime.timedelta(hours=3),
+            }
+            token = jwt.encode(payload, secret_key, algorithm="HS256")
+            record.jwt_token = token
+            # else:
+            #     pass
 
     def create(self, vals_list):
-        user_employee = self.env["hr.employee"].search(
-            [("identification_id", "=", vals_list["national_id"])], limit=1
-        )
-        vals_list["employee_id"] = user_employee.id
+        # user_employee = self.env["hr.employee"].search(
+        #     [("identification_id", "=", vals_list["national_id"])], limit=1
+        # )
+        # vals_list["employee_id"] = user_employee.id
 
         result = super().create(vals_list)
 

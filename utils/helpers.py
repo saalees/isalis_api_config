@@ -13,15 +13,15 @@ def validate_api_key(br=None):
     return csi
 
 
-def get_employee(identification_id):
-    emp = (
-        request.env["hr.employee"]
-        .sudo()
-        .search([("identification_id", "=", identification_id)], limit=1)
-    )
-    if not emp:
-        return json_Response({"error": "Employee Not found"}, 404)
-    return emp
+# def get_employee(identification_id):
+#     emp = (
+#         request.env["hr.employee"]
+#         .sudo()
+#         .search([("identification_id", "=", identification_id)], limit=1)
+#     )
+#     if not emp:
+#         return json_Response({"error": "Employee Not found"}, 404)
+#     return emp
 
 
 def prepare_ilogdata(csi, request):
