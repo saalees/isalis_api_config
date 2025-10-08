@@ -35,7 +35,8 @@
                         </group>
                         <group>
                             <field name="webhook_url"
-                                placeholder="https://fastapi-endpoint.com/webhook" />
+                                placeholder="https://fastapi-endpoint.com/webhook"
+                                password="True" />
                         </group>
                     </sheet>
                 </form>
