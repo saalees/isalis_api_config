@@ -7,7 +7,9 @@ class WebhookConfig(models.Model):
     _description = "Webhook Configuration for ESS System"
     _order = "name"
 
-    name = fields.Char(string="Configuration Name", required=True)
+    name = fields.Char(
+        string="Configuration Name", related="notification_type.name", store=True
+    )
     notification_type = fields.Many2one(
         "webhook.notification_type",
         string="Notification Type",

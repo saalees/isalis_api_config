@@ -19,7 +19,7 @@ class WebhookNotificationType(models.Model):
     _name = "webhook.notification_type"
     _description = "Webhook Notification Type"
 
-    name = fields.Char(string="Notification Type", required=True, unique=True)
+    name = fields.Char(string="Notification Name", required=True, unique=True)
     event_type = fields.Char(string="Event Type", required=True)
     description = fields.Text(string="Description")
 
