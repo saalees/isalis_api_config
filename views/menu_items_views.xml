@@ -4,7 +4,7 @@
         <!-- Action -->
         <record id="action_webhook_config" model="ir.actions.act_window">
             <field name="name">Webhook Configuration</field>
-            <field name="res_model">webhook_config</field>
+            <field name="res_model">webhook.config</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -18,7 +18,7 @@
 
         <record id="action_webhook_notification" model="ir.actions.act_window">
             <field name="name">Webhook Notifications</field>
-            <field name="res_model">webhook_notification</field>
+            <field name="res_model">webhook.notification</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{'group_by': ['notification_type', 'status']}</field>
             <field name="help" type="html">
@@ -33,7 +33,7 @@
 
         <record id="action_webhook_notification_type" model="ir.actions.act_window">
             <field name="name">Webhook Notification Types</field>
-            <field name="res_model">webhook_notification_type</field>
+            <field name="res_model">webhook.notification_type</field>
             <field name="view_mode">tree,form</field>
         </record>
 
@@ -66,54 +66,54 @@
         </record>
 
         <!-- Menu Item -->
-        <menuitem id="ess_menu_api_root" name="Ess" sequence="120"
+        <menuitem id="menu_api_root" name="Ess" sequence="120"
             web_icon="isalis_api_config,static/description/icon.png" />
 
-        <menuitem id="ess_menu_api_management_root"
+        <menuitem id="menu_api_management_root"
             name="API Management"
-            parent="ess_menu_api_root"
+            parent="menu_api_root"
             sequence="1" />
 
         <menuitem id="menu_api_test_model"
             name="API Tests"
-            parent="ess_menu_api_management_root"
+            parent="menu_api_management_root"
             action="action_api_test_model"
             sequence="1" />
 
         <menuitem id="menu_api_type_model"
             name="API Types"
-            parent="ess_menu_api_management_root"
+            parent="menu_api_management_root"
             action="action_api_type_model"
             sequence="2" />
 
 
-        <menuitem id="ess_menu_webhook_management_root"
+        <menuitem id="menu_webhook_management_root"
             name="Webhook Management"
-            parent="ess_menu_api_root"
+            parent="menu_api_root"
             sequence="2" />
 
         <menuitem id="menu_webhook_notification_type_root"
             name="Webhook Notification Types"
-            parent="ess_menu_webhook_management_root"
+            parent="menu_webhook_management_root"
             action="action_webhook_notification_type"
             sequence="1" />
 
-        <menuitem id="ess_menu_webhook_config"
+        <menuitem id="menu_webhook_config"
             name="Webhook Configuration"
-            parent="ess_menu_webhook_management_root"
+            parent="menu_webhook_management_root"
             action="action_webhook_config"
             sequence="2" />
 
-        <menuitem id="ess_menu_webhook_notification"
+        <menuitem id="menu_webhook_notification"
             name="Webhook Notifications"
-            parent="ess_menu_webhook_management_root"
+            parent="menu_webhook_management_root"
             action="action_webhook_notification"
             sequence="3" />
 
 
         <menuitem id="menu_erp_security"
             name="ERP Security Records"
-            parent="ess_menu_api_root"
+            parent="menu_api_root"
             action="action_erp_security"
             sequence="3" />
     </data>

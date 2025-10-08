@@ -65,7 +65,7 @@
                             class="btn-primary"
                             attrs="{'invisible': [('test_result', '=', 'success')]}" />
                         <field name="test_result" widget="badge"
-                            decoration-success="test_result == 'success'"
+                            decoration-succ="test_result == 'success'"
                             decoration-danger="test_result == 'failed'"
                             decoration-warning="test_result == 'error'" />
                     </header>

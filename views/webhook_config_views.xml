@@ -3,8 +3,8 @@
     <data>
         <!-- Webhook Configuration Tree View -->
         <record id="view_webhook_config_tree" model="ir.ui.view">
-            <field name="name">webhook_config.tree</field>
-            <field name="model">webhook_config</field>
+            <field name="name">webhook.config.tree</field>
+            <field name="model">webhook.config</field>
             <field name="arch" type="xml">
                 <tree string="Webhook Configuration">
                     <field name="name" />
@@ -18,8 +18,8 @@
 
         <!-- Webhook Configuration Form View -->
         <record id="view_webhook_config_form" model="ir.ui.view">
-            <field name="name">webhook_config.form</field>
-            <field name="model">webhook_config</field>
+            <field name="name">webhook.config.form</field>
+            <field name="model">webhook.config</field>
             <field name="arch" type="xml">
                 <form string="Webhook Configuration">
                     <sheet>
@@ -44,8 +44,8 @@
 
         <!-- Webhook Configuration Search View -->
         <record id="view_webhook_config_search" model="ir.ui.view">
-            <field name="name">webhook_config.search</field>
-            <field name="model">webhook_config</field>
+            <field name="name">webhook.config.search</field>
+            <field name="model">webhook.config</field>
             <field name="arch" type="xml">
                 <search string="Webhook Configuration">
                     <field name="name" />

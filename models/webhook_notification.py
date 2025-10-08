@@ -16,7 +16,7 @@ _logger = logging.getLogger(__name__)
 
 
 class WebhookNotificationType(models.Model):
-    _name = "webhook_notification_type"
+    _name = "webhook.notification_type"
     _description = "Webhook Notification Type"
 
     name = fields.Char(string="Notification Type", required=True, unique=True)
@@ -25,13 +25,13 @@ class WebhookNotificationType(models.Model):
 
 
 class WebhookNotification(models.Model):
-    _name = "webhook_notification"
+    _name = "webhook.notification"
     _description = "Webhook Notification for ESS System"
     _order = "create_date desc"
 
     name = fields.Char(string="Notification Name", compute="_compute_name", store=True)
     notification_type = fields.Many2one(
-        "webhook_notification_type", string="Notification Type"
+        "webhook.notification_type", string="Notification Type"
     )
     event_type = fields.Char(
         string="Event Type", related="notification_type.event_type"
@@ -152,7 +152,7 @@ class WebhookNotification(models.Model):
         """Create and send a webhook notification immediately"""
         if not webhook_url:
             # Get webhook URL from configuration
-            config = self.env["webhook_config"].sudo()
+            config = self.env["webhook.config"].sudo()
             webhook_url = config.get_webhook_url(notification_type)
 
         if not webhook_url:
