@@ -3,6 +3,7 @@ from odoo.http import request
 from ..utils.helpers import (
     json_Response,
     validate_api_key,
+    get_employee,
     prepare_ilogdata,
 )
 import requests
@@ -120,9 +121,9 @@ class AppSecurityController(http.Controller):
                     {"error": f'Missing fields: {", ".join(missing)}'}, 400
                 )
 
-            # employee = get_employee(national_id)
-            # if isinstance(employee, http.Response):
-            #     return employee
+            employee = get_employee(national_id)
+            if isinstance(employee, http.Response):
+                return employee
 
             vals = {
                 "salis_session_id": salis_session_id,
