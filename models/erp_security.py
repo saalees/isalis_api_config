@@ -28,7 +28,7 @@ class ErpSecurity(models.Model):
     )
     expiry_after = fields.Datetime(
         string="Expiry After",
-        default=lambda self: fields.Datetime.now() + datetime.timedelta(minutes=5),
+        default=lambda: fields.Datetime.now() + datetime.timedelta(minutes=5),
         compute="_compute_expiry_after",
         readonly=True,
     )

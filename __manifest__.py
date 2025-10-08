@@ -27,6 +27,6 @@
     "application": True,
     "auto_install": False,
     "external_dependencies": {
-        "python": ["requests"],
+        "python": ["requests", "PyJWT"],
     },
 }
