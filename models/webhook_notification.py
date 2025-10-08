@@ -20,7 +20,7 @@ class WebhookNotificationType(models.Model):
     _description = "Webhook Notification Type"
 
     name = fields.Char(string="Notification Name", required=True, unique=True)
-    event_type = fields.Char(string="Event Type", required=True)
+    event_type = fields.Char(string="Event Type", required=True, unique=True)
     description = fields.Text(string="Description")
 
 
@@ -131,12 +131,15 @@ class WebhookNotification(models.Model):
 
     @api.model
     def create_notification(
-        self, notification_type, model_name, record_id, webhook_url, headers=None
+        self, event_type, model_name, record_id, webhook_url, headers=None
     ):
         """Create a webhook notification"""
+        notification_type = self.env["webhook.notification_type"].search(
+            [("event_type", "=", event_type)], limit=1
+        )
         return self.create(
             {
-                "notification_type": notification_type,
+                "notification_type": notification_type.id,
                 "model_name": model_name,
                 "record_id": record_id,
                 "webhook_url": webhook_url,
@@ -147,22 +150,22 @@ class WebhookNotification(models.Model):
 
     @api.model
     def send_notification(
-        self, notification_type, model_name, record_id, webhook_url=None, headers=None
+        self, event_type, model_name, record_id, webhook_url=None, headers=None
     ):
         """Create and send a webhook notification immediately"""
         if not webhook_url:
             # Get webhook URL from configuration
             config = self.env["webhook.config"].sudo()
-            webhook_url = config.get_webhook_url(notification_type)
+            webhook_url = config.get_webhook_url(event_type)
 
         if not webhook_url:
             _logger.warning(
-                f"No webhook URL configured for notification type: {notification_type}"
+                f"No webhook URL configured for notification type: {event_type}"
             )
             return None
 
         notification = self.create_notification(
-            notification_type, model_name, record_id, webhook_url, headers
+            event_type, model_name, record_id, webhook_url, headers
         )
         notification.action_send_webhook()
         return notification
