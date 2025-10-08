@@ -12,10 +12,10 @@
         "security/ir.model.access.xml",
         "security/ir.model.access.csv",
         "views/api_test_views.xml",
-        # "views/erp_security_views.xml",
-        # "views/webhook_config_views.xml",
-        # "views/webhook_notification_views.xml",
-        # "views/menu_items_views.xml",
+        "views/erp_security_views.xml",
+        "views/webhook_config_views.xml",
+        "views/webhook_notification_views.xml",
+        "views/menu_items_views.xml",
     ],
     "assets": {
         "web.assets_backend": [

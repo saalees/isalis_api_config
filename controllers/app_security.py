@@ -4,7 +4,6 @@ from ..utils.helpers import (
     json_Response,
     validate_api_key,
     prepare_ilogdata,
-    get_employee,
 )
 import requests
 
@@ -121,9 +120,9 @@ class AppSecurityController(http.Controller):
                     {"error": f'Missing fields: {", ".join(missing)}'}, 400
                 )
 
-            employee = get_employee(national_id)
-            if isinstance(employee, http.Response):
-                return employee
+            # employee = get_employee(national_id)
+            # if isinstance(employee, http.Response):
+            #     return employee
 
             vals = {
                 "salis_session_id": salis_session_id,

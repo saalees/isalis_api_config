@@ -14,14 +14,14 @@ def validate_api_key(br=None):
 
 
 def get_employee(identification_id):
-    employee = (
+    emp = (
         request.env["hr.employee"]
         .sudo()
         .search([("identification_id", "=", identification_id)], limit=1)
     )
-    if not employee:
+    if not emp:
         return json_Response({"error": "Employee Not found"}, 404)
-    return employee
+    return emp
 
 
 def prepare_ilogdata(csi, request):
