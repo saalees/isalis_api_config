@@ -2,7 +2,12 @@
     "name": "Salis Employee Self Service",
     "version": "16.0.0.0.0",
     "description": "Employee Self Service",
-    "depends": ["base", "basei", "hr"],
+    "depends": [
+        "base",
+        "basei",
+        "hr",
+        "iomc",
+    ],
     "data": [
         "security/ir.model.access.xml",
         "security/ir.model.access.csv",

@@ -1,6 +1,6 @@
 from odoo import http
 from odoo.http import request
-from ...utils.helpers import (
+from ..utils.helpers import (
     json_Response,
     validate_api_key,
     prepare_ilogdata,
