@@ -9,7 +9,6 @@
                 <tree string="Webhook Configuration">
                     <field name="name" />
                     <field name="notification_type" />
-                    <field name="webhook_url" />
                     <field name="is_active" />
                     <field name="company_id" groups="base.group_multi_company" />
                 </tree>
@@ -50,7 +49,6 @@
                 <search string="Webhook Configuration">
                     <field name="name" />
                     <field name="notification_type" />
-                    <field name="webhook_url" password="True" />
                     <filter string="Active" name="active" domain="[('is_active', '=', True)]" />
                     <filter string="Inactive" name="inactive" domain="[('is_active', '=', False)]" />
                     <group expand="0" string="Group By">
