@@ -71,6 +71,7 @@
                             <group>
                                 <field name="name" />
                                 <field name="notification_type" readonly="1" />
+                                <field name="event_type" readonly="1" />
                                 <field name="model_name" readonly="1" />
                                 <field name="record_id" readonly="1" />
                             </group>

@@ -37,7 +37,7 @@ class WebhookConfig(models.Model):
         """Get webhook URL for a specific notification type"""
         config = self.search(
             [
-                ("notification_type", "=", event_type),
+                ("event_type", "=", event_type),
                 ("is_active", "=", True),
                 ("company_id", "=", self.env.company.id),
             ],

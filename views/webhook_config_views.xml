@@ -26,6 +26,7 @@
                             <group>
                                 <field name="name" />
                                 <field name="notification_type" />
+                                <field name="event_type" readonly="1" />
                                 <field name="is_active" />
                             </group>
                             <group>
@@ -33,8 +34,7 @@
                             </group>
                         </group>
                         <group>
-                            <field name="webhook_url"
-                                placeholder="https://fastapi-endpoint.com/webhook" />
+                            <field name="webhook_url" password="True" />
                         </group>
                     </sheet>
                 </form>
