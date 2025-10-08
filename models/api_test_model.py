@@ -52,9 +52,9 @@ class ApiTestModel(models.Model):
     )
 
     base_url = fields.Char("Base URL", default="http://localhost:8066")
-    response_status = fields.Integer("Response Status")
-    response_data = fields.Text("Response Data")
-    response_time = fields.Float("Response Time (seconds)")
+    response_status = fields.Integer("Response Status", readonly=True)
+    response_data = fields.Text("Response Data", readonly=True)
+    response_time = fields.Float("Response Time (seconds)", readonly=True)
 
     test_result = fields.Selection(
         [
@@ -67,7 +67,7 @@ class ApiTestModel(models.Model):
         default="pending",
     )
 
-    error_message = fields.Text("Error Message")
+    error_message = fields.Text("Error Message", readonly=True)
     created_date = fields.Datetime("Created Date", default=fields.Datetime.now)
     executed_date = fields.Datetime("Executed Date")
 
