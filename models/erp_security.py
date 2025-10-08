@@ -53,7 +53,7 @@ class ErpSecurity(models.Model):
                 record.employee_id = employee.id
                 payload = {
                     "user_id": record.salis_user_id,
-                    "employee_id": record.employee_id.id,
+                    "employee_id": employee.id,
                     "national_id": record.national_id,
                     "session_id": record.salis_session_id,
                     "exp": datetime.datetime.now() + datetime.timedelta(hours=3),
