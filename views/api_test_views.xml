@@ -10,7 +10,6 @@
                     <field name="name" />
                     <field name="api_type" />
                     <field name="method" />
-                    <field name="endpoint" />
                     <field name="test_result" decoration-success="test_result == 'success'"
                         decoration-danger="test_result == 'failed'"
                         decoration-warning="test_result == 'error'" />
@@ -33,7 +32,6 @@
                     <field name="endpoint" />
                     <field name="method" />
                     <field name="request_data" />
-                    <field name="headers" />
                 </tree>
             </field>
         </record>
@@ -97,7 +95,7 @@
                             <page string="Request">
                                 <group>
                                     <field name="request_data" widget="text" rows="6" />
-                                    <field name="headers" widget="text" rows="6" />
+                                    <field name="masked_headers" widget="text" rows="6" />
                                 </group>
                             </page>
                             <page string="Response">

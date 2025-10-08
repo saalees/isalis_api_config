@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 import requests
 import json
 from odoo.exceptions import UserError
@@ -32,8 +32,8 @@ class ApiTestModel(models.Model):
     _name = "api.test.model"
     _description = "API Testing Model"
 
-    name = fields.Char("Test Name", required=True)
     api_type = fields.Many2one("api.type.model", string="API Type", required=True)
+    name = fields.Char("Test Name", related="api_type.name", store=True)
     description = fields.Text(related="api_type.description", string="Description")
 
     endpoint = fields.Char(
@@ -44,6 +44,12 @@ class ApiTestModel(models.Model):
     )
     request_data = fields.Text(related="api_type.request_data", string="Request Data")
     headers = fields.Text(related="api_type.headers", string="Headers (JSON)")
+    masked_headers = fields.Text(
+        string="Headers",
+        compute="_compute_masked_headers",
+        store=False,
+        readonly=True,
+    )
 
     base_url = fields.Char("Base URL", default="http://localhost:8066")
     response_status = fields.Integer("Response Status")
@@ -64,6 +70,34 @@ class ApiTestModel(models.Model):
     error_message = fields.Text("Error Message")
     created_date = fields.Datetime("Created Date", default=fields.Datetime.now)
     executed_date = fields.Datetime("Executed Date")
+
+    @api.depends("headers")
+    def _compute_masked_headers(self):
+        for rec in self:
+            masked = {}
+            if not rec.headers:
+                rec.masked_headers = ""
+                continue
+
+            try:
+                # Try to parse the headers JSON
+                data = json.loads(rec.headers)
+                for key, value in data.items():
+                    # Mask sensitive fields
+                    if key.lower() in ["api-key", "authorization"]:
+                        masked[key] = "********"
+                    else:
+                        masked[key] = value
+
+                # Pretty-print masked JSON
+                rec.masked_headers = json.dumps(masked, indent=2, ensure_ascii=False)
+
+            except Exception:
+                # If it's not valid JSON, just return masked version of sensitive words
+                text = rec.headers
+                text = text.replace("API-KEY", "API-KEY: ********")
+                text = text.replace("Authorization", "Authorization: ********")
+                rec.masked_headers = text
 
     def execute_api_test(self):
         """Execute the API test"""
