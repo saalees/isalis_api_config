@@ -36,7 +36,9 @@ class ApiTestModel(models.Model):
     api_type = fields.Many2one("api.type.model", string="API Type", required=True)
     description = fields.Text(related="api_type.description", string="Description")
 
-    endpoint = fields.Char(related="api_type.endpoint", string="Endpoint")
+    endpoint = fields.Char(
+        related="api_type.endpoint", string="Endpoint", readonly=False
+    )
     method = fields.Selection(
         related="api_type.method", string="HTTP Method", store=True
     )
