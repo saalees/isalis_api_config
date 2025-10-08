@@ -3,13 +3,13 @@ from odoo import models, fields, api
 
 
 class WebhookConfig(models.Model):
-    _name = "isalis_ess.webhook_config"
+    _name = "webhook_config"
     _description = "Webhook Configuration for ESS System"
     _order = "name"
 
     name = fields.Char(string="Configuration Name", required=True)
     notification_type = fields.Many2one(
-        "isalis_ess.webhook_notification_type",
+        "webhook_notification_type",
         string="Notification Type",
         required=True,
     )

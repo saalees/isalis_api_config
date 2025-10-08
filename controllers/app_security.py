@@ -93,7 +93,7 @@ class AppSecurityController(http.Controller):
             salis_session_id = payload.get("sid")
             national_id = userinfo.get("poi_num")
 
-            ErpSecurity = request.env["isalis_ess.erp.security"].sudo()
+            ErpSecurity = request.env["erp.security"].sudo()
 
             # Check if a valid, non-expired token already exists for this user
             existing = ErpSecurity.search(
@@ -155,7 +155,7 @@ class AppSecurityController(http.Controller):
             return json_Response({"error": "Missing token"}, 400)
 
         token = data["token"]
-        ErpSecurity = request.env["isalis_ess.erp.security"].sudo()
+        ErpSecurity = request.env["erp.security"].sudo()
         record = ErpSecurity.search([("jwt_token", "=", token)], limit=1)
         if record and record.active:
             return json_Response({"valid": True}, 200)
@@ -175,7 +175,7 @@ class AppSecurityController(http.Controller):
             return json_Response({"error": "Missing token"}, 400)
 
         token = data["token"]
-        ErpSecurity = request.env["isalis_ess.erp.security"].sudo()
+        ErpSecurity = request.env["erp.security"].sudo()
         record = ErpSecurity.search([("jwt_token", "=", token)], limit=1)
         if record and record.active:
             record.active = False

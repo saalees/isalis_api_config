@@ -3,8 +3,8 @@
     <data>
         <!-- Webhook Notification Type Tree View -->
         <record id="view_webhook_notification_type_tree" model="ir.ui.view">
-            <field name="name">isalis_ess.webhook_notification_type.tree</field>
-            <field name="model">isalis_ess.webhook_notification_type</field>
+            <field name="name">webhook_notification_type.tree</field>
+            <field name="model">webhook_notification_type</field>
             <field name="arch" type="xml">
                 <tree string="Webhook Notification Types">
                     <field name="name" />
@@ -16,8 +16,8 @@
 
         <!-- Webhook Notification Type Form View -->
         <record id="view_webhook_notification_type_form" model="ir.ui.view">
-            <field name="name">isalis_ess.webhook_notification_type.form</field>
-            <field name="model">isalis_ess.webhook_notification_type</field>
+            <field name="name">webhook_notification_type.form</field>
+            <field name="model">webhook_notification_type</field>
             <field name="arch" type="xml">
                 <form string="Webhook Notification Type">
                     <sheet>
@@ -33,8 +33,8 @@
 
         <!-- Webhook Notification Tree View -->
         <record id="view_webhook_notification_tree" model="ir.ui.view">
-            <field name="name">isalis_ess.webhook_notification.tree</field>
-            <field name="model">isalis_ess.webhook_notification</field>
+            <field name="name">webhook_notification.tree</field>
+            <field name="model">webhook_notification</field>
             <field name="arch" type="xml">
                 <tree string="Webhook Notifications" create="false">
                     <field name="name" />
@@ -53,8 +53,8 @@
 
         <!-- Webhook Notification Form View -->
         <record id="view_webhook_notification_form" model="ir.ui.view">
-            <field name="name">isalis_ess.webhook_notification.form</field>
-            <field name="model">isalis_ess.webhook_notification</field>
+            <field name="name">webhook_notification.form</field>
+            <field name="model">webhook_notification</field>
             <field name="arch" type="xml">
                 <form string="Webhook Notification">
                     <header>
@@ -96,8 +96,8 @@
 
         <!-- Webhook Notification Search View -->
         <record id="view_webhook_notification_search" model="ir.ui.view">
-            <field name="name">isalis_ess.webhook_notification.search</field>
-            <field name="model">isalis_ess.webhook_notification</field>
+            <field name="name">webhook_notification.search</field>
+            <field name="model">webhook_notification</field>
             <field name="arch" type="xml">
                 <search string="Webhook Notifications">
                     <field name="name" />

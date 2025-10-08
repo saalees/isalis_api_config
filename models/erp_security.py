@@ -4,7 +4,7 @@ import datetime
 
 
 class ErpSecurity(models.Model):
-    _name = "isalis_ess.erp.security"
+    _name = "erp.security"
     _description = "ERP Security Model"
 
     salis_session_id = fields.Char(string="Salis Session ID", readonly=True)

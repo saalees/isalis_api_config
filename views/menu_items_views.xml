@@ -4,7 +4,7 @@
         <!-- Action -->
         <record id="action_webhook_config" model="ir.actions.act_window">
             <field name="name">Webhook Configuration</field>
-            <field name="res_model">isalis_ess.webhook_config</field>
+            <field name="res_model">webhook_config</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -18,7 +18,7 @@
 
         <record id="action_webhook_notification" model="ir.actions.act_window">
             <field name="name">Webhook Notifications</field>
-            <field name="res_model">isalis_ess.webhook_notification</field>
+            <field name="res_model">webhook_notification</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{'group_by': ['notification_type', 'status']}</field>
             <field name="help" type="html">
@@ -33,7 +33,7 @@
 
         <record id="action_webhook_notification_type" model="ir.actions.act_window">
             <field name="name">Webhook Notification Types</field>
-            <field name="res_model">isalis_ess.webhook_notification_type</field>
+            <field name="res_model">webhook_notification_type</field>
             <field name="view_mode">tree,form</field>
         </record>
 
@@ -60,7 +60,7 @@
 
         <record id="action_erp_security" model="ir.actions.act_window">
             <field name="name">ERP Security</field>
-            <field name="res_model">isalis_ess.erp.security</field>
+            <field name="res_model">erp.security</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_erp_security_search" />
         </record>

@@ -116,7 +116,7 @@ Gets list of employees who can accept replacements.
 
 ## Models
 
-### 1. Webhook Notification (`isalis_ess.webhook_notification`)
+### 1. Webhook Notification (`webhook_notification`)
 
 Stores webhook notifications and their status.
 
@@ -130,7 +130,7 @@ Stores webhook notifications and their status.
 - `payload`: Notification payload data
 - `retry_count`: Number of retry attempts
 
-### 2. Webhook Configuration (`isalis_ess.webhook_config`)
+### 2. Webhook Configuration (`webhook_config`)
 
 Stores webhook URLs for different notification types.
 

@@ -1,7 +1,7 @@
 <odoo>
     <record id="view_erp_security_tree" model="ir.ui.view">
         <field name="name">erp.security.tree</field>
-        <field name="model">isalis_ess.erp.security</field>
+        <field name="model">erp.security</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="salis_session_id" />
@@ -18,7 +18,7 @@
 
     <record id="view_erp_security_form" model="ir.ui.view">
         <field name="name">erp.security.form</field>
-        <field name="model">isalis_ess.erp.security</field>
+        <field name="model">erp.security</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -40,7 +40,7 @@
 
     <record id="view_erp_security_search" model="ir.ui.view">
         <field name="name">erp.security.search</field>
-        <field name="model">isalis_ess.erp.security</field>
+        <field name="model">erp.security</field>
         <field name="arch" type="xml">
             <search>
                 <field name="salis_session_id" />
