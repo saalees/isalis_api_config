@@ -32,6 +32,8 @@
                     <field name="description" />
                     <field name="endpoint" />
                     <field name="method" />
+                    <field name="request_data" />
+                    <field name="headers" />
                 </tree>
             </field>
         </record>
@@ -48,6 +50,8 @@
                             <field name="description" />
                             <field name="endpoint" />
                             <field name="method" />
+                            <field name="request_data" />
+                            <field name="headers" />
                         </group>
                     </sheet>
                 </form>
@@ -65,7 +69,7 @@
                             class="btn-primary"
                             attrs="{'invisible': [('test_result', '=', 'success')]}" />
                         <field name="test_result" widget="badge"
-                            decoration-succ="test_result == 'success'"
+                            decoration-success="test_result == 'success'"
                             decoration-danger="test_result == 'failed'"
                             decoration-warning="test_result == 'error'" />
                     </header>
