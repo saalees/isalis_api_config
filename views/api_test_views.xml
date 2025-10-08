@@ -129,12 +129,6 @@
                     <filter string="Pending Tests" name="pending"
                         domain="[('test_result', '=', 'pending')]" />
                     <separator />
-                    <filter string="Employee API" name="employee"
-                        domain="[('api_type', '=', 'employee')]" />
-                    <filter string="Expense API" name="expense"
-                        domain="[('api_type', '=', 'expense')]" />
-                    <filter string="Payslip API" name="payslip"
-                        domain="[('api_type', '=', 'payslip')]" />
                     <group expand="0" string="Group By">
                         <filter string="API Type" name="group_api_type"
                             context="{'group_by': 'api_type'}" />
