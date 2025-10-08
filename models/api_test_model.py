@@ -37,7 +37,9 @@ class ApiTestModel(models.Model):
     description = fields.Text(related="api_type.description", string="Description")
 
     endpoint = fields.Char(related="api_type.endpoint", string="Endpoint")
-    method = fields.Selection(related="api_type.method", string="HTTP Method")
+    method = fields.Selection(
+        related="api_type.method", string="HTTP Method", store=True
+    )
     request_data = fields.Text(related="api_type.request_data", string="Request Data")
     headers = fields.Text(related="api_type.headers", string="Headers (JSON)")
 
