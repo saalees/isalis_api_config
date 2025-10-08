@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 import jwt
 import datetime
+from ..utils.helpers import json_Response
 
 
 class ErpSecurity(models.Model):
@@ -53,7 +54,8 @@ class ErpSecurity(models.Model):
                     "employee_id": record.employee_id.id,
                     "national_id": record.national_id,
                     "session_id": record.salis_session_id,
-                    "exp": datetime.datetime.now() + datetime.timedelta(hours=3),
+                    "exp": datetime.datetime.now()
+                    + datetime.timedelta(minutes=record.expiry_time_interval),
                 }
                 token = jwt.encode(payload, secret_key, algorithm="HS256")
                 record.jwt_token = token
@@ -75,12 +77,14 @@ class ErpSecurity(models.Model):
     def decode_token(self, token):
         secret_key = "PBZjsKzceL3jMUBcVeo4eKeRy1WRz7ic"  # temporary dummy key
         try:
-            payload = jwt.decode(token, secret_key, algorithms=["HS256"])
+            payload = jwt.decode(
+                token, secret_key, algorithms=["HS256"], options={"verify_exp": True}
+            )
             return payload
         except jwt.ExpiredSignatureError:
-            return {"error": "Token has expired"}
+            return json_Response({"error": "Token has expired"}, 401)
         except jwt.InvalidTokenError:
-            return {"error": "Invalid token"}
+            return json_Response({"error": "Invalid token"}, 401)
 
     def auto_archive_expired(self):
         expired_records = self.search(

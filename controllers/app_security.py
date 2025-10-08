@@ -100,6 +100,7 @@ class AppSecurityController(http.Controller):
             existing = ErpSecurity.search(
                 [
                     ("national_id", "=", national_id),
+                    ("salis_session_id", "=", salis_session_id),
                     ("active", "=", True),
                 ],
                 limit=1,
@@ -151,17 +152,16 @@ class AppSecurityController(http.Controller):
         csrf=False,
     )
     def verify_erp_token(self):
-        data = request.httprequest.get_json()
-        if not data or "token" not in data:
-            return json_Response({"error": "Missing token"}, 400)
+        authorization = request.httprequest.headers.get("Authorization")
+        token = None
+        if authorization and authorization.lower().startswith("bearer "):
+            token = authorization[7:]
 
-        token = data["token"]
         ErpSecurity = request.env["erp.security"].sudo()
-        record = ErpSecurity.search([("jwt_token", "=", token)], limit=1)
-        if record and record.active:
-            return json_Response({"valid": True}, 200)
-        else:
-            return json_Response({"error": "Invalid token"}, 401)
+        verify_result = ErpSecurity.decode_token(token)
+        if verify_result and isinstance(verify_result, http.Response):
+            return verify_result
+        return json_Response({"valid": True}, 200)
 
     @http.route(
         "/api/erp/logout",
