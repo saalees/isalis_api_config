@@ -8,8 +8,7 @@
             <field name="arch" type="xml">
                 <tree string="Webhook Notification Types">
                     <field name="name" />
-                    <field name="model_name" />
-                    <field name="record_id" />
+                    <field name="event_type" />
                     <field name="description" />
                 </tree>
             </field>
@@ -24,8 +23,7 @@
                     <sheet>
                         <group>
                             <field name="name" />
-                            <field name="model_name" />
-                            <field name="record_id" />
+                            <field name="event_type" />
                             <field name="description" />
                         </group>
                     </sheet>

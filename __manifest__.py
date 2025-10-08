@@ -1,7 +1,7 @@
 {
-    "name": "Salis Employee Self Service",
-    "version": "16.0.0.0.0",
-    "description": "Employee Self Service",
+    "name": "Salis Api Configuration",
+    "version": "16.1.0.0.0",
+    "description": "API Configuration for Salis APIs",
     "depends": [
         "base",
         "basei",
@@ -9,7 +9,6 @@
         "iomc",
     ],
     "data": [
-        "security/ir.model.access.xml",
         "security/ir.model.access.csv",
         "views/api_test_views.xml",
         "views/erp_security_views.xml",
