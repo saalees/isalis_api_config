@@ -6,9 +6,16 @@ from ..utils.helpers import (
     get_employee,
     prepare_ilogdata,
 )
+import os
 import requests
 
 auth = "public"
+
+
+KEYCLOAK_URL = os.getenv("KEYCLOAK_URL")
+ESS_APIKEY = os.getenv("ESS_APIKEY")
+KEYCLOAK_TENANT_ID = os.getenv("KEYCLOAK_TENANT_ID")
+GET_USER_INFO_URL = os.getenv("GET_USER_INFO_URL")
 
 
 class AppSecurityController(http.Controller):
@@ -18,10 +25,10 @@ class AppSecurityController(http.Controller):
 
         try:
             resp = requests.post(
-                "https://apiman.saalees.com/apiman-gateway/saalees/verify_token/1.01",
+                f"{KEYCLOAK_URL}",
                 params={
-                    "tenant_id": "91",
-                    "apikey": "9e7cd89b-efaf-4381-8ddf-30a65ddeef81",
+                    "tenant_id": KEYCLOAK_TENANT_ID,
+                    "apikey": ESS_APIKEY,
                 },
                 headers={"Authorization": authorization},
                 timeout=10,
@@ -44,11 +51,11 @@ class AppSecurityController(http.Controller):
 
         try:
             resp = requests.get(
-                "https://apiman.saalees.com/apiman-gateway/saalees/Get_user_data/1.0",
-                params={"apikey": "9e7cd89b-efaf-4381-8ddf-30a65ddeef81"},
+                f"{GET_USER_INFO_URL}",
+                params={"apikey": ESS_APIKEY},
                 headers={
                     "Authorization": authorization,
-                    "tenant-id": "91",
+                    "tenant-id": KEYCLOAK_TENANT_ID,
                 },
                 timeout=10,
             )
